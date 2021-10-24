@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+# React App - Huella sostenible BBVA Hackathon 2021
+## Team Black Mirrow
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
