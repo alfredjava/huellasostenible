@@ -6,18 +6,10 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 
+import Button from '@mui/material/Button';
+
 import ItemResult from '../components/ItemResult';
-
-import { green, pink } from '@mui/material/colors';
-
-import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import OpacityIcon from '@mui/icons-material/Opacity';
-import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
-import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
-
-import { useHistory } from 'react-router-dom';
+import ItemSugerencia from '../components/ItemSugerencia';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -25,49 +17,20 @@ import Paper from '@mui/material/Paper';
 import CalculadoraContext from '../context/Calculadora/CalculadoraContext';
 
 import Header from '../components/Header';
+import ModalRecalculo from '../components/ModalRecalculo';
+
+import useResult from '../hooks/useResult';
 
 const theme = createTheme();
 
-const simulacion = [
-  {
-    title: 'Nro de trabajadores',
-    value: 6000,
-    icon: <EmojiPeopleIcon/>,
-    percentage: 100,
-  },
-  {
-    title: 'Kilo Whatss al mes',
-    value: 5000,
-    icon: <ReceiptIcon/>,
-    percentage: 90,
-  },
-  {
-    title: 'Consumo de papel',
-    value: 4000,
-    icon: <LocalGasStationIcon/>,
-    percentage: 80,
-  },
-  {
-    title: 'Consumo promedio de gasoina',
-    value: 3000,
-    icon: <OpacityIcon/>,
-    percentage: 70,
-  },
-  {
-    title: 'Consumo de Agua potable',
-    value: 2000,
-    icon: <ImportantDevicesIcon/>,
-    percentage: 60,
-  },
-  {
-    title: 'Cantidad de computadoras',
-    value: 1000,
-    icon: <ElectricalServicesIcon/>,
-    percentage: 50,
-  },
-];
-
 const Resultado = () => {
+  const { datosCalculadora } = useContext(CalculadoraContext);
+
+  const [info] = useResult(datosCalculadora);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -111,7 +74,11 @@ const Resultado = () => {
               <Typography
                 component='h2'
                 variant='h2'
-                style={{ color: 'rgb(231 44 44 / 84%)', fontWeight: '600' }}
+                style={{
+                  color: 'rgb(231 44 44 / 84%)',
+                  fontWeight: '600',
+                  marginBottom: '1em',
+                }}
                 sx={{
                   pt: 0,
                 }}
@@ -125,7 +92,7 @@ const Resultado = () => {
                   bgcolor: 'background.paper',
                 }}
               >
-                {simulacion.map((item, index) => (
+                {info.map((item, index) => (
                   <ItemResult data={item} key={index} />
                 ))}
               </List>
@@ -150,14 +117,25 @@ const Resultado = () => {
               }}
             >
               <Typography
-                component='h1'
-                variant='h5'
+                component='h2'
+                variant='h3'
+                style={{
+                  color: 'rgb(108 198 93)',
+                  textAlign: 'center',
+                  marginBottom: '1em',
+                }}
                 sx={{
-                  pt: 4,
+                  pt: 0,
                 }}
               >
-                Datos de la Empresa
+                Sugerencia para reducir el{' '}
+                <span style={{ fontWeight: '700' }}> CO2 </span>
               </Typography>
+              {info.map((item) => (
+                <ItemSugerencia key={item.id} data={item} />
+              ))}
+              <Button variant='contained' onClick={handleOpen}>Recalcular</Button>
+              <ModalRecalculo open={open} handleClose={() => setOpen(false)}/>
             </Box>
           </Grid>
         </main>

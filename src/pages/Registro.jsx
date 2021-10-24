@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 import * as Yup from 'yup';
-import { useFormik, Field } from 'formik';
+import { useFormik } from 'formik';
 
 import CalculadoraContext from '../context/Calculadora/CalculadoraContext';
 

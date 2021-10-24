@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
@@ -10,9 +10,7 @@ import LinearProgress, {
   linearProgressClasses,
 } from '@mui/material/LinearProgress';
 
-import { green, pink } from '@mui/material/colors';
-
-import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import { green } from '@mui/material/colors';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -30,7 +28,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 const ItemResult = ({ data }) => {
   const { title, value, icon, percentage } = data;
   return (
-    <ListItem alignItems='flex-start'>
+    <ListItem alignItems='flex-start' sx={{ mb: 3 }}>
       <ListItemIcon>
         <Avatar sx={{ bgcolor: green[500] }}>
           {icon}

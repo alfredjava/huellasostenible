@@ -9,14 +9,19 @@ const reducer = (state, action) => {
       };
     case 'SAVE_CALULATOR':
       sessionStorage.setItem('calculator', JSON.stringify(action.payload));
+      const localDataCalculator = state.datosCalculadora;
+      const objectForm = action.payload;
+      const newArray = localDataCalculator.map((item) => {
+        return {
+          ...item,
+          value: objectForm[item.id],
+        };
+      });
       return {
         ...state,
-        nroTrabajadores: action.payload.nroTrabajadores,
-        kwm: action.payload.kwm,
-        consumoPapel: action.payload.consumoPapel,
-        consumoGasolina: action.payload.consumoGasolina,
-        consumoAgua: action.payload.consumoAgua,
-        nroComputadoras: action.payload.nroComputadoras,
+        datosCalculadora: newArray.sort((a, b) =>
+          a.value < b.value ? 1 : b.value < a.value ? -1 : 0
+        ),
       };
 
     default:

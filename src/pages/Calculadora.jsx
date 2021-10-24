@@ -70,7 +70,6 @@ const Calculadora = () => {
     initialValues,
     validationSchema,
     onSubmit: (valores) => {
-      const { nombre, rubro } = valores;
       guardarDatosCalculadora({
         ...valores,
       });

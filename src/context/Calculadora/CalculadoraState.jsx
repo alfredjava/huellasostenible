@@ -8,13 +8,38 @@ const CalculadoraState = ({ children }) => {
     nombre: '',
     rubro: '',
     /** DATOS DE CALCULADORA */
-    
-    nroTrabajadores: '',
-    kwm: '',
-    consumoPapel: '',
-    consumoGasolina: '',
-    consumoAgua: '',
-    nroComputadoras: '',
+    datosCalculadora: [
+      {
+        title: 'Nro de trabajadores',
+        id: 'nroTrabajadores',
+        value: 0,
+      },
+      {
+        title: 'Kilo Whatss al mes',
+        id: 'kwm',
+        value: 0,
+      },
+      {
+        title: 'Consumo de papel',
+        id: 'consumoPapel',
+        value: 0,
+      },
+      {
+        title: 'Consumo promedio de gasoina',
+        id: 'consumoGasolina',
+        value: 0,
+      },
+      {
+        title: 'Consumo de Agua potable',
+        id: 'consumoAgua',
+        value: 0,
+      },
+      {
+        title: 'Cantidad de computadoras',
+        id: 'nroComputadoras',
+        value: 0,
+      },
+    ],
   };
   /**
    * MANDAMOS A GUARDAR LOS DATOS DEL USUARIO */
@@ -63,12 +88,7 @@ const CalculadoraState = ({ children }) => {
         nombre: state.nombre,
         rubro: state.rubro,
         guardarDatosUsuario,
-        nroTrabajadores: state.nroTrabajadores,
-        kwm: state.kwm,
-        consumoPapel: state.consumoPapel,
-        consumoGasolina: state.consumoGasolina,
-        consumoAgua: state.consumoAgua,
-        nroComputadoras: state.nroComputadoras,
+        datosCalculadora: state.datosCalculadora,
         guardarDatosCalculadora,
       }}
     >
