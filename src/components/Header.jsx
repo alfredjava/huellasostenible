@@ -27,10 +27,10 @@ const Header = ({ goTo }) => {
         </Typography>
         {goTo ? (
           <Button variant="outlined" size="small" component={Link} to={goTo}>
-            INICIAR
+            DIAGNOSTICAR CONSUMO
           </Button>
         ) : (
-          <Button variant="outlined" size="small" component={Link}>
+          <Button variant="outlined" size="small">
             salva al planeta
           </Button>
         )}

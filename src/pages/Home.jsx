@@ -13,11 +13,15 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import juegos from "../juegos.jpg";
-
+import email from "../email.jpg";
+import televisor from "../televisor.jpg";
+import papel from "../papel.jpg";
+import automovil from "../automovil.jpg";
+import agua from "../agua.jpg";
 import Header from "../components/Header";
 
 const theme = createTheme();
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const informaciones =[{"id":1,"imagen":juegos,"titulo":"Videojuegos","consumo":"Genera 50 Kg de CO2 al año."},{"id":2,"imagen":email,"titulo":"Enviar un email","consumo":"Genera 4g de CO2."},{"id":3,"imagen":televisor,"titulo":"Ver la TV","consumo":"Genera 35 Kg de CO2 al año."},{"id":4,"imagen":papel,"titulo":"Consumo de Papel","consumo":"Cada tonelada de papel que se recicla evita que se talen 3,14 toneladas de árboles"},{"id":5,"imagen":automovil,"titulo":"consumo de gasolina","consumo":"Un automóvil quema un galón de gasolina genera alrededor de 9,07kg de CO2"},{"id":6,"imagen":agua,"titulo":"consumo de agua potable","consumo":"genera 4Kg de CO2 por m3 de agua consumida"}]
 const Home = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -40,12 +44,12 @@ const Home = () => {
                 paragraph
               >
                 Reduce estas acciones habituales de tu día cotidiano y ayudarás
-                a contribuir al planeta y a tu vida
+                a contribuir al planeta y a la de tu familia
               </Typography>
 
               <Grid container spacing={4}>
-                {cards.map((card) => (
-                  <Grid item key={card} xs={12} sm={6} md={4}>
+                {informaciones.map((info) => (
+                  <Grid item key={info.id} xs={12} sm={6} md={4}>
                     <Card
                       sx={{
                         height: "100%",
@@ -53,13 +57,13 @@ const Home = () => {
                         flexDirection: "column",
                       }}
                     >
-                      <CardMedia component="img" image={juegos} alt="random" />
+                      <CardMedia component="img" image={info.imagen} alt="random" />
                       <CardContent sx={{ flexGrow: 1 }}>
                         <Typography gutterBottom variant="h5" component="h2">
-                          Videojuegos
+                        {info.titulo}
                         </Typography>
                         <Typography color="text.secondary">
-                          Genera 50 Kg de CO2 al año.
+                        {info.consumo}
                         </Typography>
                       </CardContent>
                       <CardActions>
